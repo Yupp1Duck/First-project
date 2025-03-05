@@ -1,2 +1,84 @@
-include<random>
-rnd - 
+dmg_input()  урон проходящий по игроку
+damage_input() урон проходящий по врагу
+atk_output() вызывает урон от игрока
+attack() вызывает урон по игроку
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+ 
+using namespace std;
+ 
+class Animal {
+public:
+    string color;
+    string name;
+    
+    Animal(string color1, string name1): color(color1), name(name1) {} ///конструктор классе
+    
+    Animal(string name1): name(name1) {}
+ 
+    Animal(): color("undefined"), name("no name") {}
+ 
+    void run() {
+        cout << "бежит";
+    }
+ 
+    void eat() {
+        cout << "поел";
+    }
+ 
+    void sleep() {
+        cout << "поспал";
+    }
+};
+ 
+class Cat : public Animal { /// кошка наследует животкное
+public:
+    void meow() {
+        cout << "мяу";
+    }
+ 
+    void hunt_mouse() {
+        cout << "поймала мыш";
+    }
+};
+ 
+int main() {
+    Animal dog = Animal("dog", "grey");
+    Cat cat;
+    cat.color = "Ginger";
+    dog.run();
+    cat.run();
+    ///dog.meow();
+    cat.meow();
+    return 0;
+}
+
+
+
+
+
