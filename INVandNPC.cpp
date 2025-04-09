@@ -1,6 +1,16 @@
 #include "header.h"
 using namespace std;
+class BaseNpc {
+    public:
+    string current_dialog;
+    int reputation;
+    int quests_lvl;
+    vector<int> arm_prices;
+    
+    vector<int> wpn_prices;
+    
 
+};
 class Item {
 public:
     
@@ -21,22 +31,22 @@ public:
 
     Item(): armor_tier(0), wpn_tier(0), loot_low(0), loot_mid(0), loot_high(0), loot_boss(0), money(0) {}
 
-    void sell(NPC current_npc) {
-        current_inv.money += loot_low_multipler * current_npc.reputation * loot_low;
-        current_inv.money += loot_mid_multipler * current_npc.reputation * loot_mid;
-        current_inv.money += loot_high_multipler * current_npc.reputation * loot_high;
-        current_inv.money += loot_boss_multipler * loot_boss;
+    void sell(BaseNpc current_npc) {
+        money += loot_low_multipler * current_npc.reputation * loot_low;
+        money += loot_mid_multipler * current_npc.reputation * loot_mid;
+        money += loot_high_multipler * current_npc.reputation * loot_high;
+        money += loot_boss_multipler * loot_boss;
     }
 };
 
-class NPC {
+class NPC : virtual public BaseNpc{
     public: 
         string current_dialog;
         int reputation;
         int quests_lvl;
-        vector<int> arm_prices;
+        
         vector<int> arm_prices = {2, 5, 10, 15, 20, 28, 36, 45, 55, 70};
-        vector<int> wpn_prices;
+        
         vector<int> wpn_prices = {2, 5, 10, 15, 20, 28, 36, 45, 55, 70};
     
         NPC(int quests_lvl1, int reputation1, string current_dialog1): quests_lvl(quests_lvl1), reputation(reputation1), current_dialog(current_dialog1) {}
