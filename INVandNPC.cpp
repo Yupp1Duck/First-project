@@ -21,10 +21,10 @@ public:
     int loot_high;
     int loot_boss;
     int money;
-    int loot_low_multipler = 0.6;
-    int loot_mid_multipler = 0.8;
-    int loot_high_multipler = 1.6;
-    int loot_boss_multipler = 2.4;
+    double loot_low_multipler = 0.6;
+    double loot_mid_multipler = 0.8;
+    double loot_high_multipler = 1.6;
+    double loot_boss_multipler = 2.4;
 
     Item(int armor_tier1, int wpn_tier1, int loot_low1, int loot_mid1, int loot_high1, int loot_boss1, int money1): armor_tier(armor_tier1), wpn_tier(wpn_tier1), loot_low(loot_low1), loot_mid(loot_mid1), loot_high(loot_high1), loot_boss(loot_boss1), money(money1) {}
 

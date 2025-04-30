@@ -11,17 +11,22 @@ int main() {
         creature current_mob = creature(0,0,"");
         current_mob.mobGenerating(current);
         if (current_mob.health <= 9){
-            current_mob.name = "Little goblin";
+            current_mob.set_name("Little goblin");
         } else if (current_mob.health < 17){
-            current_mob.name = "Goblin";
+            current_mob.set_name("Goblin");
         } else if (current_mob.health <= 23){
-            current_mob.name = "Elite goblin";
+            current_mob.set_name("Elite goblin");
         } else if (current_mob.health <= 29){
-            current_mob.name = "Little demon";
+            current_mob.set_name("Little demon");
         } else if (current_mob.health <= 35){
-            current_mob.name = "Goblin guardian";
+            current_mob.set_name("Goblin guardian");
         } else if (current_mob.health <= 44){
-            current_mob.name = "Weak ogre";
+            current_mob.set_name("Weak ogre");
         } 
+        cout << "Generated!" << '\n' << "Here's: ";
+        cout << current_mob.get_name();
     }
+
+    return 0;
 }
+

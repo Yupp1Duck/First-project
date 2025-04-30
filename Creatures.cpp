@@ -9,8 +9,17 @@ class BaseChar {
     int base_dmg;
     int current_hp;
     int current_dmg;
+    BaseChar(int base_hp1, int base_dmg1, int current_hp1, int current_dmg1 ): base_hp(base_hp1), base_dmg(base_dmg1), current_hp(current_hp1), current_dmg(current_dmg1) {}
+    
+    
+    BaseChar(): base_hp(0), base_dmg(0), current_hp(0), current_dmg(0){}
     virtual void dmg_input(int damage){}
-    virtual void get_current_dmg(int damage){}
+    virtual int get_current_dmg(){
+        return current_dmg;
+    }
+    virtual int get_current_hp(){
+        return current_hp;
+    }
     
 };
 
@@ -31,6 +40,14 @@ class creature {
     }
     string get_name () {
         return name;
+    }
+
+    void set_damage(int damage1) {
+        damage = damage1;
+    }
+
+    void set_name(string name1) {
+        name = name1;
     }
 
     void attack(BaseChar current) {
@@ -55,11 +72,11 @@ class creature {
     void mobGenerating(BaseChar current){
         srand((unsigned)time(0));
         int hp_gen;
-        hp_gen = rand() % 5 + 1;  
+        hp_gen = abs(rand()) % 5 + 1;  
         health = hp_gen * current.current_dmg;
         srand((unsigned)time(0));
         int dmg_gen;
-        dmg_gen = rand() % 5 + 1; 
+        dmg_gen = abs(rand()) % 5 + 1; 
         damage = hp_gen * current.current_hp;
     }
 };
@@ -77,10 +94,10 @@ class main_char : virtual public BaseChar {
         int base_dmg;
         int current_hp;
         int current_dmg;
-        main_char(int base_hp1, int base_dmg1, int current_hp1, int current_dmg1 ): base_hp(base_hp1), base_dmg(base_dmg1), current_hp(current_hp1), current_dmg(current_dmg1) {}
+        main_char(int base_hp1, int base_dmg1, int current_hp1, int current_dmg1 ): BaseChar(base_hp1, base_dmg1, current_hp1, current_dmg1){}
     
     
-        main_char(): base_hp(0), base_dmg(0), current_hp(0), current_dmg(0){}
+        main_char(): BaseChar(){}
     
         int get_base_hp () {
             return base_hp;
@@ -94,9 +111,10 @@ class main_char : virtual public BaseChar {
         int get_base_dmg () {
             return base_dmg;
         }
-
-
         
+        
+
+
         void game_over() {
             cout << "Game over";
             exit (0);
