@@ -19,3 +19,6 @@ else if (current_mob.health <= 59){
             current_mob.name = "Perfect being *THE STRONGEST*";
         }
 
+
+dialog variations:
+    default; in battle(only for battle); raid(mobs generating);

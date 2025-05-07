@@ -5,21 +5,22 @@ using namespace std;
 
 class BaseChar {
     public:
-    int base_hp;
-    int base_dmg;
+
     int current_hp;
     int current_dmg;
-    BaseChar(int base_hp1, int base_dmg1, int current_hp1, int current_dmg1 ): base_hp(base_hp1), base_dmg(base_dmg1), current_hp(current_hp1), current_dmg(current_dmg1) {}
+    BaseChar(int current_hp1, int current_dmg1 ): current_hp(current_hp1), current_dmg(current_dmg1) {}
     
     
-    BaseChar(): base_hp(0), base_dmg(0), current_hp(0), current_dmg(0){}
+    BaseChar(): current_hp(0), current_dmg(0){}
     virtual void dmg_input(int damage){}
+
     virtual int get_current_dmg(){
         return current_dmg;
     }
     virtual int get_current_hp(){
         return current_hp;
     }
+
     
 };
 
@@ -90,27 +91,21 @@ class Boss : public creature {
 class main_char : virtual public BaseChar {
     public:
         
-        int base_hp;
-        int base_dmg;
-        int current_hp;
-        int current_dmg;
-        main_char(int base_hp1, int base_dmg1, int current_hp1, int current_dmg1 ): BaseChar(base_hp1, base_dmg1, current_hp1, current_dmg1){}
+        
+
+        main_char(int current_hp1, int current_dmg1 ): BaseChar(current_hp1, current_dmg1){}
     
     
         main_char(): BaseChar(){}
     
-        int get_base_hp () {
-            return base_hp;
-        }
+        
         int get_current_hp () {
             return current_hp;
         }
         int get_current_dmg () {
             return current_dmg;
         }
-        int get_base_dmg () {
-            return base_dmg;
-        }
+        
         
         
 
@@ -120,7 +115,7 @@ class main_char : virtual public BaseChar {
             exit (0);
         }
         void atk_update(Item current_inv) {
-            current_dmg = base_dmg + current_inv.wpn_tier;
+            current_dmg = current_dmg + current_inv.wpn_tier;
         }
         void dmg_input(int damage) {
             current_hp -= damage;

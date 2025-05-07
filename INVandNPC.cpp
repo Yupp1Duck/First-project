@@ -6,10 +6,9 @@ class BaseNpc {
     int reputation;
     int quests_lvl;
     vector<int> arm_prices;
-    
     vector<int> wpn_prices;
-    
-
+    BaseNpc(int quests_lvl1, int reputation1, string current_dialog1): quests_lvl(quests_lvl1), reputation(reputation1), current_dialog(current_dialog1){}
+    BaseNpc(): quests_lvl(0), reputation(1), current_dialog("") {}
 };
 class Item {
 public:
@@ -41,18 +40,23 @@ public:
 
 class NPC : virtual public BaseNpc{
     public: 
-        string current_dialog;
-        int reputation;
-        int quests_lvl;
-        
+
         vector<int> arm_prices = {2, 5, 10, 15, 20, 28, 36, 45, 55, 70};
         
         vector<int> wpn_prices = {2, 5, 10, 15, 20, 28, 36, 45, 55, 70};
     
-        NPC(int quests_lvl1, int reputation1, string current_dialog1): quests_lvl(quests_lvl1), reputation(reputation1), current_dialog(current_dialog1) {}
+        NPC(int quests_lvl1, int reputation1, string current_dialog1): BaseNpc(quests_lvl1, reputation1, current_dialog1) {}
     
-        NPC(): quests_lvl(0), reputation(1), current_dialog("") {}
-    
+        NPC(): BaseNpc(){}
+
+        string get_dialog(){
+            return current_dialog;
+        }
+        void set_dialog(string current_dialog1) {
+            current_dialog = current_dialog1;
+        }
+
+
         void buy(Item current_inv) {
             if (current_dialog == "ArmorShop") {
                 cout << "Select armor tier(1-10)";
