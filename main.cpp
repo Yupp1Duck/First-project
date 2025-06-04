@@ -34,7 +34,7 @@ int main() {
         } 
         cout << "Generated!" << '\n' << "Here's: ";
         cout << current_mob.get_name() << '\n';
-        while (raid_current > 0)
+        while ((raid_current > 0) || (current.current_hp > 0))
         {
             current_npc.set_dialog("In battle");
             current.atk_update(current_inv);
@@ -42,6 +42,7 @@ int main() {
             if (current_npc.current_dialog == "Attack"){
                 current.atk_output(current_mob);
                 current_mob.damage_input(&current);
+                cout << "Mob got " << current.current_dmg << " dmg!" << '\n';
                 cout << "Now " << current_mob.name << " have " << current_mob.health << " hp!" << '\n';
                 if (current_mob.health <= 0){
                     cout << "You won!";
@@ -52,7 +53,9 @@ int main() {
             }
             current_mob.attack(current);
                 current.dmg_input(current_mob.damage);
-                if (current.current_hp >= 0){
+                cout << "You got " << current_mob.damage << " damage!" << '\n';
+                cout << "Now you have " << current.current_hp << " hp!";
+                if (current.current_hp <= 0){
                     cout << "You died";
                     return 0;
                 }
