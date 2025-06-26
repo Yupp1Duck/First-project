@@ -11,12 +11,12 @@ else if (current_mob.health <= 59){
             current_mob.name = "Ogre *BOSS*";
         } else if (current_mob.health <= 77){
             current_mob.name = "Demon guardian *BOSS*";
-        } else if (current_mob.health <= 83){
-            current_mob.name = "Dragon *BOSS*";
-        } else if (current_mob.health <= 99){
-            current_mob.name = "Satan *BOSS*";
-        } else if (current_mob.health > 99){
-            current_mob.name = "Perfect being *THE STRONGEST*";
+            } else if (current_mob.health <= 83){
+                current_mob.name = "Dragon *BOSS*";
+            } else if (current_mob.health <= 99){
+                current_mob.name = "Satan *BOSS*";
+            } else if (current_mob.health > 99){
+                current_mob.name = "Perfect being *THE STRONGEST*";
         }
 
 

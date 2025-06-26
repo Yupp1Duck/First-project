@@ -4,9 +4,10 @@ using namespace std;
 int main() {
     NPC current_npc = NPC(1, 0, "Default");
     Item current_inv = Item(1,1,1,1,1,1,1);
-    main_char current = main_char(1,1);
+    main_char current = main_char(1,1,1);
     if (current_npc.current_dialog == "Default"){
         cout << "Hello! Select an action:";}
+        current.set_stats();
     cin >> current_npc.current_dialog;
     if (current_npc.current_dialog == "Raid") {
         creature current_mob = creature(0,0,"");
@@ -54,7 +55,7 @@ int main() {
             current_mob.attack(current);
                 current.dmg_input(current_mob.damage);
                 cout << "You got " << current_mob.damage << " damage!" << '\n';
-                cout << "Now you have " << current.current_hp << " hp!";
+                cout << "Now you have " << current.current_hp << " hp!" << '\n';
                 if (current.current_hp <= 0){
                     cout << "You died";
                     return 0;
