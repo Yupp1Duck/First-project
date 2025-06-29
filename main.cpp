@@ -4,11 +4,19 @@ using namespace std;
 int main() {
     NPC current_npc = NPC(1, 0, "Default");
     Item current_inv = Item(1,1,1,1,1,1,1);
-    main_char current = main_char(1,1,1);
+    main_char current = main_char(0,0,0,1,1,1);
     if (current_npc.current_dialog == "Default"){
         cout << "Hello! Select an action:";}
-        current.set_stats();
+        current.set_stats(current);
     cin >> current_npc.current_dialog;
+    if (current_npc.current_dialog == "Inv") {
+        cout << "Power level: " << current.get_power_lvl() << '\n';
+        cout << "Money " << current_inv.money << '\n';
+        cout << "Weapon"<< "\t" << "Armor" << "\t" << "Artifacts" << "\t" << "class placeholder" << "\n" << "T" << current_inv.get_wpnt() << "\t" << "T" << current_inv.get_armt() << "\t" << "Savior sign x" << current.get_svr() << "\t" << "placeholderStr1";
+        cout << '\n' << "" << "\t" << ""  << "\t" << "Monarch soul x" << current.get_srp() << "\t" << "placeholderStr2";
+        cout <<'\n'<< "" << "\t" << ""  << "\t" << "Demon blood x" << current.get_blood() << "\t" << "placeholderStr3";
+        current_npc.set_dialog("Default");
+    } 
     if (current_npc.current_dialog == "Raid") {
         creature current_mob = creature(0,0,"");
         current_mob.mobGenerating(current);
@@ -48,7 +56,7 @@ int main() {
                 if (current_mob.health <= 0){
                     cout << "You won!";
                     raid_current = 0;
-                    break;
+                    current_npc.set_dialog("Default");
                 }
                 
             }
@@ -58,7 +66,7 @@ int main() {
                 cout << "Now you have " << current.current_hp << " hp!" << '\n';
                 if (current.current_hp <= 0){
                     cout << "You died";
-                    return 0;
+                    current_npc.set_dialog("Default");
                 }
         }
         current_npc.set_dialog("Default");

@@ -8,10 +8,13 @@ class BaseChar {
     int current_hp;
     int current_dmg;
     int power_lvl;
-    BaseChar(int current_hp1, int current_dmg1, int power_lvl1): current_hp(current_hp1), current_dmg(current_dmg1), power_lvl(power_lvl1) {}
+    int savior_sign;
+    int monarch_soul;
+    int demon_blood;
+    BaseChar(int current_hp1, int current_dmg1, int power_lvl1, int savior_sign1, int monarch_soul1, int demon_blood1): savior_sign(savior_sign1), monarch_soul(monarch_soul1), demon_blood(demon_blood1), current_hp(current_hp1), current_dmg(current_dmg1), power_lvl(power_lvl1) {}
     
     
-    BaseChar(): current_hp(0), current_dmg(0), power_lvl(0){}
+    BaseChar(): current_hp(0), current_dmg(0), power_lvl(0), savior_sign(0), monarch_soul(0), demon_blood(0){}
     virtual void dmg_input(int damage){}
     virtual void plvl_init(int power_lvl, int current_dmg, int current_hp){}
 
@@ -24,7 +27,15 @@ class BaseChar {
     virtual int get_power_lvl(){
         return power_lvl;
     }
-
+    virtual int get_svr() {
+        return savior_sign;
+    }
+    virtual int get_srp() {
+        return monarch_soul;
+    }
+    virtual int get_blood() {
+        return demon_blood;
+    }
     
 };
 
@@ -66,10 +77,10 @@ class creature {
         if (health <= 10) {
             current_inv.loot_low =+ 1;
         }
-        else if (health <= 17) {
+        else if (health <= 32) {
             current_inv.loot_mid =+ 1;
         }
-        else if (health <= 25) {
+        else if (health <= 57) {
             current_inv.loot_high =+ 1;
         }
     }
@@ -96,7 +107,7 @@ class main_char : virtual public BaseChar {
     public:
         
         
-        main_char(int current_hp1, int current_dmg1, int power_lvl1): BaseChar(current_hp1, current_dmg1, power_lvl1){}
+        main_char(int current_hp1, int current_dmg1, int power_lvl1, int savior_sign1, int monarch_soul1, int demon_blood1): BaseChar(savior_sign1, monarch_soul1, demon_blood1, current_hp1, current_dmg1, power_lvl1){}
     
     
         main_char(): BaseChar(){}
@@ -111,6 +122,16 @@ class main_char : virtual public BaseChar {
         int get_power_lvl () {
             return power_lvl;
         }
+        int get_svr() {
+            return savior_sign;
+        }
+        int get_srp() {
+            return monarch_soul;
+        }
+        int get_blood() {
+            return demon_blood;
+        }
+    
         
         
         
@@ -150,7 +171,7 @@ class main_char : virtual public BaseChar {
         void set_stats(BaseChar current){
             set_current_dmg(current.current_dmg);
             set_current_hp(current.current_hp);
-            plvl_init(int current.current_dmg, int current.current_hp);
+            plvl_init(current);
             set_power_lvl(current.power_lvl);
         }
         

@@ -22,3 +22,39 @@ else if (current_mob.health <= 59){
 
 dialog variations:
     default; in battle(only for battle); raid(mobs generating);
+
+
+
+
+
+
+prev fight system code
+
+while ((raid_current > 0) || (current.current_hp > 0))
+        {
+            current_npc.set_dialog("In battle");
+            current.atk_update(current_inv);
+            cin >> current_npc.current_dialog;
+            if (current_npc.current_dialog == "Attack"){
+                current.atk_output(current_mob);
+                current_mob.damage_input(&current);
+                cout << "Mob got " << current.current_dmg << " dmg!" << '\n';
+                cout << "Now " << current_mob.name << " have " << current_mob.health << " hp!" << '\n';
+                if (current_mob.health <= 0){
+                    cout << "You won!";
+                    raid_current = 0;
+                    current_npc.set_dialog("Default");
+                }
+                
+            }
+            current_mob.attack(current);
+                current.dmg_input(current_mob.damage);
+                cout << "You got " << current_mob.damage << " damage!" << '\n';
+                cout << "Now you have " << current.current_hp << " hp!" << '\n';
+                if (current.current_hp <= 0){
+                    cout << "You died";
+                    current_npc.set_dialog("Default");
+                }
+        }
+        current_npc.set_dialog("Default");
+    }

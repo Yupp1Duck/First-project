@@ -20,6 +20,8 @@ public:
     int loot_high;
     int loot_boss;
     int money;
+    
+
     double loot_low_multipler = 0.6;
     double loot_mid_multipler = 0.8;
     double loot_high_multipler = 1.6;
@@ -29,6 +31,14 @@ public:
 
 
     Item(): armor_tier(0), wpn_tier(0), loot_low(0), loot_mid(0), loot_high(0), loot_boss(0), money(0) {}
+
+    
+    int get_wpnt() {
+        return wpn_tier;
+    }
+    int get_armt(){
+        return armor_tier;
+    }
 
     void sell(BaseNpc current_npc) {
         money += loot_low_multipler * current_npc.reputation * loot_low;
