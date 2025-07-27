@@ -58,3 +58,5 @@ while ((raid_current > 0) || (current.current_hp > 0))
         }
         current_npc.set_dialog("Default");
     }
+
+combat rework code:

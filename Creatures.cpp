@@ -58,6 +58,10 @@ class creature {
         return name;
     }
 
+    void set_health(int health1) {
+        health = health1;
+    }
+
     void set_damage(int damage1) {
         damage = damage1;
     }
@@ -166,6 +170,7 @@ class main_char : virtual public BaseChar {
 
         void atk_output(creature current_mob) {
             current_mob.damage_input(this);
+            current_mob.set_health(current_mob.health);
         }
 
         void set_stats(BaseChar current){
