@@ -22,10 +22,10 @@ public:
     int money;
     
 
-    double loot_low_multipler = 0.6;
-    double loot_mid_multipler = 0.8;
-    double loot_high_multipler = 1.6;
-    double loot_boss_multipler = 2.4;
+    double loot_low_multipler = 1.0;
+    double loot_mid_multipler = 2.3;
+    double loot_high_multipler = 5.1;
+    double loot_boss_multipler = 7.2;
 
     Item(int armor_tier1, int wpn_tier1, int loot_low1, int loot_mid1, int loot_high1, int loot_boss1, int money1): armor_tier(armor_tier1), wpn_tier(wpn_tier1), loot_low(loot_low1), loot_mid(loot_mid1), loot_high(loot_high1), loot_boss(loot_boss1), money(money1) {}
 
@@ -39,7 +39,27 @@ public:
     int get_armt(){
         return armor_tier;
     }
+    int get_loot_l(){
+        return loot_low;
+    }
+    int get_loot_m(){
+        return loot_mid;
+    }
+    int get_loot_h(){
+        return loot_high;
+    }
 
+
+
+    void set_loot_l(int loot_low1){
+        loot_low = loot_low1;
+    }
+    void set_loot_m(int loot_mid1){
+        loot_mid = loot_mid1;
+    }
+    void set_loot_h(int loot_high1){
+        loot_high = loot_high1;
+    }
     void sell(BaseNpc current_npc) {
         money += loot_low_multipler * current_npc.reputation * loot_low;
         money += loot_mid_multipler * current_npc.reputation * loot_mid;

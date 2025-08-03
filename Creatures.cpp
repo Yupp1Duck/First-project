@@ -44,6 +44,8 @@ class creature {
     string name;
     int damage;
     int health;    
+    vector<int> save_mob;
+    save_mob.push_back(0);
     creature(int damage1, int health1, string name1): damage(damage1), health(health1), name(name1) {}
 
     creature(): damage(0), health(0), name("") {}
@@ -76,18 +78,12 @@ class creature {
     void damage_input(BaseChar * current) {
         health -= current -> current_dmg;
     }
-
-    void drop(Item current_inv) {
-        if (health <= 10) {
-            current_inv.loot_low =+ 1;
-        }
-        else if (health <= 32) {
-            current_inv.loot_mid =+ 1;
-        }
-        else if (health <= 57) {
-            current_inv.loot_high =+ 1;
-        }
+    void drop(Item current_inv, creature current_mob){
+        current_inv.loot_low = current_mob.save_mob(1) * current_inv.loot_low_multipler;
+        current_inv.set_loot_l(current_inv.loot_low);
+        current_inv.set_loot_m(current_inv.loot_mid);
     }
+
 
     void mobGenerating(BaseChar current){
         srand((unsigned)time(0));
